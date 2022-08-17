@@ -4,6 +4,7 @@ Node.prototype.removeClass = function(className) { this.classList.remove(classNa
 Node.prototype.hasClass    = function(className) { return this.classList.contains(className); }
 function randomNumber(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }
 
+
 var $game = {
   mode: 'trigger', /* Trigger mode or Flag mode */
   modeBtn: null,
@@ -293,8 +294,33 @@ function setClickEvent() {
       updateStatistic();
       if ($game.is_finished()) { gameSuccess(); }
     });
-  });
+	  
+    unit.addEventListener('auxclick', function(event) {
+         if (unit.hasClass('flagged')) {
+          unit.removeClass('flagged');
+          unit.addClass('enabled');
+          unit.innerHTML = '';
+          $game.flags--;
+          $game.sweptUnits--;
+        } else {
+          unit.addClass('flagged');
+          unit.innerHTML = '🚩';
+          $game.flags++;
+          $game.sweptUnits++;
+
+          var flagElement = $game.statistic.flags;
+          if ($game.tooMuchFlag() && !flagElement.hasClass('too-much-flags')) {
+            flagElement.addClass('too-much-flags');
+          } else if (!$game.tooMuchFlag() && flagElement.hasClass('too-much-flags')) {
+            flagElement.removeClass('too-much-flags');
+          }
+        }
+      updateStatistic();
+      if ($game.is_finished()) { gameSuccess(); }
+ 	 });
+	});
 }
+				  
 
 function recursiveSweep(row, col) {
   var unit = $grid.getUnit(row, col);

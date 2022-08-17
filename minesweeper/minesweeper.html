@@ -14,7 +14,7 @@
 
 <body>
 
-  <div id="statistic">
+<div id="statistic" oncontextmenu='return false'>
   <div>
     🚩 폭탄표시<br/>
     <p id="flags-count">0</p>
@@ -28,13 +28,13 @@
     <p id="time-counter">00:00:00</p>
   </div>
 </div>
-<div id="mine-sweeper-grid"></div>
-<div class="btn-group">
+<div id="mine-sweeper-grid"  oncontextmenu='return false'></div>
+<div class="btn-group"  oncontextmenu='return false'>
   <button id="change-mode">제거 Mode</button>
   <button id="new-game">새 게임</button>
 </div>
 
-<div id="new-game-modal" class="modal">
+<div id="new-game-modal" class="modal"  oncontextmenu='return false'>
   <div class="wrapper">
     <h1>New Game</h1>
     <label>
@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<div id="success-modal" class="modal">
+<div id="success-modal" class="modal"  oncontextmenu='return false'>
   <div class="wrapper">
     <h1>Congratulations!</h1>
     <p>You've made it in <span id="result-time"></span> !</p>
