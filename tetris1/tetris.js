@@ -575,6 +575,11 @@ var divTetris = function(parentNode) {
 
 		if (!game.paused) {
 			switch (e.keyCode) {
+				case 32: //Space
+						for(i=0;i<16;i++){		
+							tetromino.move(0,1);
+						}
+					break;
 				case 37: // Left
 					tetromino.move(-1, 0);
 					break;
